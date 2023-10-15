@@ -1,0 +1,107 @@
+service: APIMonitor
+plugins:
+  - serverless-deployment-bucket
+  - serverless-offline
+
+package:
+  exclude:
+    - node_modules/**
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, self:custom.defaultStage}
+  region: ${self:custom.region}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:GetObject"
+        - "s3:DeleteObject"
+        - "s3:GetBucketAcl"
+        - "s3:GetObjectAcl"
+        - "s3:PutObject"
+        - "s3:PutObjectAcl"
+        - "dynamodb:PutItem"
+        - "dynamodb:GetItem"
+        - "dynamodb:UpdateItem"
+        - "dynamodb:DeleteItem"
+        - "dynamodb:BatchGetItem"
+        - "dynamodb:BatchWriteItem"
+        - "dynamodb:Scan"
+        - "dynamodb:Query"
+        - "sqs:SendMessage"
+        - "sqs:RecieveMessage"
+      Resource: "*"
+  deploymentBucket:
+    name: ${self:custom.bucket-name}
+    serverSideEncryption: AES256
+    blockPublicAccess: true
+  environment:
+    SQS_NAME: 'logQueue'
+    S3_BUCKET: 'api-monitor-logs'
+    DB_NAME: 'api-logs'
+  tags:
+    env: ${self:provider.stage, self:custom.defaultStage}:${self:provider.region}
+    Environment: ${self:provider.stage, self:custom.defaultStage}
+    version: ${file(package.json):version}
+
+custom:
+  stage: ${opt:stage,'staging'} # Default value to deploy in staging environment
+  bucket-name: serverless-artifacts-api-monitor
+  region: ap-south-1
+  aws-account-id: '294778484587'
+  prefix: api-monitor
+  deploymentBucket:
+    versioning: true
+  config:
+    staging:
+      memory: 256
+      timeout: 360
+    production:
+      memory: 512
+      timeout: 360
+
+functions: # production
+  hello-world: # metadata.name
+    description: API that returns hello-world response
+    name: ${self:custom.prefix}-hello-world
+    memorySize: ${self:custom.config.${self:custom.stage}.memory}
+    handler: scripts/hello-world.handler # ../path/script.handler
+    timeout: 180
+    events:
+      - http:
+          path: hello-world
+          method: post
+          cors: true
+  save-log: # metadata.name
+    description: Script triggered by SQS to save logs
+    name: ${self:custom.prefix}-save-log
+    memorySize: ${self:custom.config.${self:custom.stage}.memory}
+    handler: scripts/save-log.handler # ../path/script.handler
+    timeout: 180
+    events:
+      - sqs:
+          arn: arn:aws:sqs:ap-south-1:294778484587:logQueue
+          batchSize: 1
+  get-analytics: # metadata.name
+    description: API that returns get-analytics response
+    name: ${self:custom.prefix}-get-analytics
+    memorySize: ${self:custom.config.${self:custom.stage}.memory}
+    handler: scripts/get-analytics.handler # ../path/script.handler
+    timeout: 180
+    events:
+      - http:
+          path: get-analytics
+          method: get
+          cors: true
+  get-logs: # metadata.name
+    description: API that returns get-logs response
+    name: ${self:custom.prefix}-get-logs
+    memorySize: ${self:custom.config.${self:custom.stage}.memory}
+    handler: scripts/get-logs.handler # ../path/script.handler
+    timeout: 180
+    events:
+      - http:
+          path: get-logs
+          method: get
+          cors: true
