@@ -1,8 +1,40 @@
-# React + Vite
+# React.js Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a sample React.js project with Vite for development and build processes.
 
-Currently, two official plugins are available:
+## Available Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In the project directory, you can run:
+
+### `npm run dev`
+
+Runs the app in development mode using Vite.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### `npm run build`
+
+Builds the app for production to the `dist` folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+### `npm run lint`
+
+Lints your JavaScript and JSX files using ESLint.
+It checks for coding standards and reports any warnings or errors.
+
+### `npm run preview`
+
+Runs the built app in preview mode using Vite.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Learn More
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+To learn Vite, check out the [Vite documentation](https://vitejs.dev/).
+To learn ESLint, check out the [ESLint documentation](https://eslint.org/).
+
+## Additional Information
+
+- This project uses [Vite](https://vitejs.dev/) for fast development and build processes.
+- ESLint is used for code linting to maintain code quality and standards.
+
+Feel free to customize and add more information based on your project's specific requirements.
