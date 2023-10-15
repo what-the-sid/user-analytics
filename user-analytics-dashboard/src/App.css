@@ -1,0 +1,72 @@
+#root {
+  margin: 0 0;
+  width: 100%;
+}
+
+.appContainer {
+  position: relative;
+}
+
+.filterContainer {
+  display: grid;
+  place-items: center;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  text-align: center;
+  padding: 2rem;
+}
+
+.section {
+  padding: 2rem 0;
+}
+
+.cardSection {
+  background-color: #73c2fb;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.overlay {
+  background-color: black;
+  opacity: 0.6;
+  height: 100%;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@media (max-width: 750px) {
+  .rdrDateRangePickerWrapper {
+    display: block !important;
+  }
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .cardContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .cardContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

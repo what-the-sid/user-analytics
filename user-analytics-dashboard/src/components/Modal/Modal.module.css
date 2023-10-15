@@ -1,0 +1,28 @@
+.modal{
+    height: 100%;
+    width: 90vw;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    background: white;
+    overflow: scroll;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+}
+
+.codeContainer{
+    padding: 2rem 15%;
+}
+.closeButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: none;
+}
+
+.closeIcon{
+    color: black;
+    height: 2rem;
+    width: 2rem;
+}
