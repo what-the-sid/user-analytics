@@ -3,6 +3,9 @@
 
 This Node.js project is hosted on AWS Lambda using the Serverless framework.
 
+## API Documentation
+You can find the API documentation [here](https://documenter.getpostman.com/view/25655079/2s9YR6ZDsX)
+
 ## Project Structure
 
 The project structure is organized as follows:
@@ -116,16 +119,18 @@ You can run the following NPM scripts to build, lint, and preview your project:
 
     ```json
     {
-        "runtime": 0.2,
-        "statusCode": 200,
-        "userId": "dshjsjdhb-bhjsdjhbdsbjh",
-        "status": "SUCCESS",
-        "timeStamp": "2023-10-14T03:13:11.891Z",
-        "name": "hello-world",
-        "method": "POST",
-        "requestId": "b4469563-dd80-4beb-9f2f-ee85a3d3f4d6"
+        "runtime": 0.2, //runtime of the hello-world API
+        "statusCode": 200, //status code returned by hello-world API
+        "userId": "dshjsjdhb-bhjsdjhbdsbjh", //userID in payload
+        "status": "SUCCESS", //status returned by hello-world API
+        "timeStamp": "2023-10-14T03:13:11.891Z", //time of request
+        "name": "hello-world", //API Name
+        "method": "POST", //API Method
+        "requestId": "b4469563-dd80-4beb-9f2f-ee85a3d3f4d6" //Unique request Id
     }
     ```
+System Structure:
 
+![System Architecture](https://user-analytics-cdn.s3.ap-south-1.amazonaws.com/user-analytics.jpg)
 
 ----------
